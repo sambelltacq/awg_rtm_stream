@@ -7,7 +7,6 @@ wait_for_uut_ready() {
 	while true; do
 		STATE=$(echo rc_local_complete | nc acq1001_315 4220)
 		echo STATE $STATE
-		#if echo $STATE | grep -q 'rclc acq...._... ..:..:.. up'; then
 		if echo $STATE | grep -q 'rclc UP acq...._... ..:..:.. up'; then
 			echo UUT is ready!
 			break
@@ -17,6 +16,8 @@ wait_for_uut_ready() {
 }
 
 wait_for_uut_ready
+
+set -e
 
 while true; do
     for file in ao422_patterns/*; do
